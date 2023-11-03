@@ -8,14 +8,14 @@ const validationErrors = {
   fullNameTooLong: 'full name must be at most 20 characters',
   sizeIncorrect: 'size must be S or M or L'
 }
-
+ 
 // 👇 Here you will create your schema.
 const formSchema= yup.object().shape({
   fullName: yup.string()
   .min(3,validationErrors.fullNameTooShort)
   .max(20,validationErrors.fullNameTooLong),
   size: yup.string()
-  .oneOf(['small', 'medium', 'large'], 'size must be S or M or L'),
+  .oneOf(['S', 'M', 'L'], 'size must be S or M or L'),
   Pepperoni: yup.string(), 
   'Green Peppers': yup.string(), 
   Pineapple: yup.string(),
@@ -117,14 +117,23 @@ export default function Form() {
     
     let successString = '';
     if ( count === 0 ) {
-      successString = 'no'
+      successString = 'with no toppings'
     } else if ( count >= 1 ) {
-      successString = `${count}`
+      successString = `with ${count} toppings`
     } 
-
+    
+    let pizzaSize = '';
+    if(formValues.size === 'S'){
+      pizzaSize = 'Your small pizza'
+    }else if(formValues.size === 'M'){
+      pizzaSize = 'Your medium pizza'
+    }else(formValues.size === 'L'){
+      pizzaSize = 'Your large pizza'
+    }
+ 
     
 
-    setSuccess(`Thank you for your order, ${formValues.fullName}! Your ${formValues.size} pizza with ${successString} toppings is on the way.`);
+    setSuccess(`Thank you for your order, ${formValues.fullName}! ${pizzaSize} ${successString} is on the way.`);
     setFormValues(initialFormValue)
   }
 
@@ -147,9 +156,9 @@ export default function Form() {
           <label htmlFor="size">Size</label><br />
           <select id="size" name= 'size' onChange={onChange} value={ formValues.size } >
             <option value="">----Choose Size----</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
             {/* Fill out the missing options */}
           </select>
         </div>

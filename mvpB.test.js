@@ -40,8 +40,35 @@ function sum(a, b) {
   if (isNaN(a) || isNaN(b)) {
     throw new Error('pass valid numbers')
   }
-  return a + b
+  return{
+    addition: a + b
+  } 
 }
+  describe('sum function', () => {
+    test('must pass valid numbers', () =>{
+      const message = 'pass valid numbers';
+      expect(() => sum()).toThrowError(message)
+    })
+    test('must pass valid numbers', () =>{
+      const message = 'pass valid numbers';
+      expect(() => sum(2, 'seven')).toThrowError(message)
+    })
+    test('correctly calculates adition', () => {
+      let result = sum( 1,3 );
+      expect(result.addition).toBe ( 4 );
+    })
+    test('correctly calculates adition', () => {
+      let result = sum( '1', 2 );
+      expect(result.addition).toBe ( 3 );
+    })
+    test('correctly calculates adition', () => {
+      let result = sum( '10', '3' );
+      expect(result.addition).toBe ( 13 );
+    })
+  })
+  
+  
+    
 
 function HelloWorld() {
   return (
@@ -60,4 +87,17 @@ function HelloWorld() {
       </main>
     </div>
   )
-}
+} 
+// describe('testing hello world component', () => {
+//   render(<HelloWorld/>)
+//   test('Home is visible', () => {
+//     expect(screen.queryByText('Home')).toBeInTheDocument()
+//   })
+//   test('About is visible', () => {
+//     expect(screen.queryByText('About')).toBeInTheDocument()
+//   })
+//   test('Blog is visible', () => {
+//     expect(screen.queryByText('Blog')).toBeInTheDocument()
+//   })
+   
+// })
