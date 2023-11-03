@@ -109,6 +109,10 @@ describe('testing hello world component', () => {
     render(<HelloWorld/>)
     expect(screen.queryByText('JavaScript is pretty awesome')).toBeInTheDocument()
   })
+  test('JavaScript is pretty  is visible', () => {
+    render(<HelloWorld/>)
+    expect(screen.queryByText('javaScript is pretty', {exact:false})).toBeInTheDocument()
+  })
      
 })
 })
