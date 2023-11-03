@@ -29,10 +29,10 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] renders a text that reads "JavaScript is pretty awesome"
     [6] renders a text that includes "javaScript is pretty" (use exact = false)
   */
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
-  })
-})
+//   test('you can comment out this test', () => {
+//     expect(true).toBe(false)
+//   })
+// })
 
 function sum(a, b) {
   a = Number(a)
@@ -88,16 +88,27 @@ function HelloWorld() {
     </div>
   )
 } 
-// describe('testing hello world component', () => {
-//   render(<HelloWorld/>)
-//   test('Home is visible', () => {
-//     expect(screen.queryByText('Home')).toBeInTheDocument()
-//   })
-//   test('About is visible', () => {
-//     expect(screen.queryByText('About')).toBeInTheDocument()
-//   })
-//   test('Blog is visible', () => {
-//     expect(screen.queryByText('Blog')).toBeInTheDocument()
-//   })
+describe('testing hello world component', () => {
+  test('Home is visible', () => {
+    render(<HelloWorld/>)
+    expect(screen.queryByText('Home')).toBeInTheDocument()
+  })
+  test('About is visible', () => {
+    render(<HelloWorld/>)
+    expect(screen.queryByText('About')).toBeInTheDocument()
+  })
+  test('Blog is visible', () => {
+    render(<HelloWorld/>)
+    expect(screen.queryByText('Blog')).toBeInTheDocument()
+  })
+  test('The Truth is visible', () => {
+    render(<HelloWorld/>)
+    expect(screen.queryByText('The Truth')).toBeInTheDocument()
+  })
+  test('JavaScript is pretty awesome is visible', () => {
+    render(<HelloWorld/>)
+    expect(screen.queryByText('JavaScript is pretty awesome')).toBeInTheDocument()
+  })
    
-// })
+})
+})
