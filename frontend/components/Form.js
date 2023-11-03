@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
-import axios from 'axios'
+
 
 // 👇 Here are the validation errors you will use with Yup.
 const validationErrors = {
@@ -12,6 +12,7 @@ const validationErrors = {
 // 👇 Here you will create your schema.
 const formSchema= yup.object().shape({
   fullName: yup.string()
+  .trim() 
   .min(3,validationErrors.fullNameTooShort)
   .max(20,validationErrors.fullNameTooLong),
   size: yup.string()
@@ -62,7 +63,7 @@ export default function Form() {
   
   const [submit, setSubmit] = useState(false)
   const [success, setSuccess] = useState('')
-  const [failure, setFailure] = useState('')
+  const [failure, setFailure] = useState('') 
 
   useEffect(() => {
     // console.log(formValues)
@@ -85,7 +86,7 @@ export default function Form() {
            setFormErrors({ ...formErrors, [name]: err.errors[0] })
         }
       })
-  }
+  } 
   
  
   
@@ -93,16 +94,7 @@ export default function Form() {
 
   const onSubmit = evt => {
     evt.preventDefault()
-    // // axios.post(formValues)
-    // .then(res => {
-    //   console.log(res.data)
-    //   setSuccess(res.data.message)
-    //   setFailure(failure)
-    // }).catch(err => {
-    //   setFailure(err.response.data.message)
-    //   setSuccess(success)
     
-    // })
     let count = 0;
     formValues.Pepperoni && count++;
     formValues['Green Peppers' ] && count++;
@@ -125,9 +117,13 @@ export default function Form() {
     let pizzaSize = '';
     if(formValues.size === 'S'){
       pizzaSize = 'Your small pizza'
-    }else if(formValues.size === 'M'){
+    }
+    else if
+    (formValues.size === 'M'){
       pizzaSize = 'Your medium pizza'
-    }else(formValues.size === 'L'){
+    }
+    else
+    {
       pizzaSize = 'Your large pizza'
     }
  
@@ -161,7 +157,7 @@ export default function Form() {
             <option value="L">Large</option>
             {/* Fill out the missing options */}
           </select>
-        </div>
+        </div> 
         {formErrors.size && <div className='error'>{formErrors.size}</div>}
       </div>
 
